@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dony15.shop.mapper.OrderDao">
+    <sql id="orderColumn">id,prices,receiverAddress, receiverName, receiverPhone,paystate,orderTime,uid</sql>
+    <!--生成订单-->
+    <insert id="insertToOrder">
+        INSERT INTO `order`(
+        <include refid="orderColumn"/>
+        )
+        VALUES(
+       #{id},#{prices},#{receiverAddress},#{ receiverName},#{ receiverPhone},0,now(),#{uid}
+        )
+    </insert>
+    <!--生成订单条目-->
+    <insert id="insertToOrderItem" parameterType="OrderItem">
+        INSERT INTO orderitem(
+        order_id,pid,`count`
+        )
+        VALUES(
+        #{order_id},#{pid},#{count}
+        )
+    </insert>
+
+
+    <!--<resultMap id="selectOneToOrderMap" type="Order">-->
+        <!--<id property="id" column="id"></id>-->
+        <!--<result property="prices" column="prices"></result>-->
+        <!--<result property="receiverAddress" column="receiverAddress"></result>-->
+        <!--<result property="receiverName" column="receiverName"></result>-->
+        <!--<result property="receiverPhone" column="receiverPhone"></result>-->
+        <!--<result property="paystate" column="paystate"></result>-->
+        <!--<result property="orderTime" column="orderTime"></result>-->
+        <!--<result property="uid" column="uid"></result>-->
+        <!--<result property="items.order_id" column="order_id"></result>-->
+        <!--<result property="items.pid" column="pid"></result>-->
+        <!--<result property="items.count" column="count"></result>-->
+        <!--<result property="items.name" column="name"></result>-->
+        <!--<result property="items.pnum" column="pnum"></result>-->
+        <!--<result property="items.productType" column="productType"></result>-->
+        <!--<result property="items.description" column="description"></result>-->
+        <!--<result property="items.img_url" column="img_url"></result>-->
+    <!--</resultMap>-->
+
+    <!--1.查看指定订单-->
+    <select id="selectOneToOrderBy" resultType="Order">
+        SELECT
+        <include refid="orderColumn"/>
+        FROM `order`
+        WHERE id=#{id}
+    </select>
+    <!--2.查看订单中所有条目-->
+    <select id="selectToOrderItem" resultType="OrderItem">
+        SELECT order_id,pid,`count`
+        FROM orderitem
+        WHERE order_id=#{order_id}
+    </select>
+
+    <!--3.修改订单状态-->
+    <update id="updateToOrderstate">
+        UPDATE `order` SET
+         paystate=1
+         WHERE id=#{id}
+    </update>
+
+    <!--4.查询订单-->
+    <select id="selectOneToOrderByUser" resultType="Order">
+        select <include refid="orderColumn" />
+        from `order`
+        where uid=#{uid}
+    </select>
+
+    <!--5.删除指定订单-->
+    <delete id="deleteOrder">
+        delete from `order`
+        where id=#{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dony15.shop.mapper.ProductDao">
+    <sql id="productColum">name,price,pnum,productType,description,img_url</sql>
+
+    <!--1.添加商品-->
+    <insert id="insertProduct" parameterType="Product">
+        INSERT INTO product(<include refid="productColum"/>)
+        VALUES(
+         #{name},#{price},#{pnum},#{productType},#{description},#{img_url}
+        )
+    </insert>
+
+    <!--2.查看商品(模糊)-->
+    <select id="selectProduct" resultType="Product">
+        SELECT id,<include refid="productColum"/>
+        FROM product
+        WHERE 1=1
+        <if test="id>0">
+            and id = #{id}
+        </if>
+        <if test="name!=null">
+           and name like #{name}
+        </if>
+        <if test="minPrice!=null">
+            and price &gt;=#{minPrice}
+        </if>
+        <if test="maxPrice!=null">
+            and price &lt;= #{maxPrice}
+        </if>
+        <if test="productType!=null">
+            and productType like #{productType}
+        </if>
+    </select>
+
+    <!--3.通过id查询商品-->
+    <select id="selectProductById" resultType="Product">
+        SELECT id,<include refid="productColum"/>
+        FROM product
+        WHERE id=#{id}
+    </select>
+
+    <!--4.编辑商品-->
+
+    <update id="updateProduct" parameterType="Product">
+        UPDATE product
+        SET  name= #{name},price=#{price},pnum=#{pnum},productType=#{productType},description=#{description},img_url=#{img_url}
+        WHERE id=#{id}
+    </update>
+
+    <!--5.删除-->
+    <delete id="deleteProduct">
+        DELETE FROM product
+        where id=#{id}
+    </delete>
+
+    <!--6.总记录数-->
+    <select id="selectCound" resultType="java.lang.Long">
+        SELECT count(id)
+        FROM product
+    </select>
+    <!--6.总记录数-->
+    <select id="selectCoundByType" resultType="java.lang.Long">
+        SELECT count(id)
+        FROM product
+        where productType=#{productType}
+    </select>
+    <!--7.分页查找商品-->
+    <select id="selectProductLimit" resultType="Product">
+        SELECT id,<include refid="productColum"/>
+        FROM product
+        limit #{pageNo},#{pageSize}
+    </select>
+    <!--8.分页查找商品-->
+    <select id="selectProductLimit2" resultType="Product">
+        SELECT id,<include refid="productColum"/>
+        FROM product
+        where productType=#{productType}
+        limit #{pageNo},#{pageSize}
+    </select>
+    <!--&lt;!&ndash;8.根据类型查询商品列表&ndash;&gt;-->
+    <select id="selectProductByType" resultType="Product">
+        select id,<include refid="productColum"/>
+        from product
+        where productType=#{productType}
+    </select>
+
+</mapper>

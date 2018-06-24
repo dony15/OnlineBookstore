@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dony15.shop.mapper.CarDao">
+    <sql id="productColum">id,name,price,pnum,productType,description,img_url</sql>
+    <!--1.第一次商品插入购物车-->
+    <insert id="insertToCar" >
+        INSERT INTO car(uid,pid,`count`)
+        values (#{uid},#{pid},1)
+    </insert>
+    <!--2.再次插入时对购物车进行修改-->
+    <update id="updateToCar">
+        update car set `count`=#{count}
+        where uid=#{uid} and pid=#{pid}
+    </update>
+    <!--3.查看购物车中唯一指定的条目-->
+    <select id="selectOneToCar" resultType="Car">
+        select uid,pid,`count`
+        from car where uid=#{uid} and pid=#{pid}
+    </select>
+
+    <!--4.查看一个用户的购物车-->
+    <select id="selectToCarAll" resultType="Car">
+        SELECT  uid,pid,`count`,<include refid="productColum"/>
+        FROM car , product
+        WHERE pid=id and uid=#{uid}
+    </select>
+
+    <!--5.删除指定商品-->
+    <delete id="deleteOneToCar">
+        delete from car
+        where uid=#{uid} and pid=#{pid}
+    </delete>
+
+    <!--6.清空购物车-->
+    <delete id="clearToCar">
+        delete from car
+         where uid=#{uid}
+    </delete>
+
+    <!--7.编辑购物车-->
+    <insert id="editToCar" parameterType="Car">
+         INSERT INTO car(uid,pid,`count`)
+        values (#{uid},#{pid},#{count})
+    </insert>
+
+</mapper>
