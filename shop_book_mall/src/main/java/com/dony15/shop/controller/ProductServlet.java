@@ -227,19 +227,20 @@ public class ProductServlet {
 
 
 
-    @RequestMapping("/goproductList2")
-    public String goproductList2(HttpServletRequest request,
-                                @RequestParam("category") String productType){
-        System.out.println("goproductList2的类型:"+productType);
-        List<Product> products = productService.selectProductByType(productType);
-        if (products!=null){
-            request.setAttribute("products",products);
-        }else{
-            List<Product> products1 = productService.selectProduct(null, null, productType, null, null);
-            request.setAttribute("products",products1);
-        }
-        return "product_list2";
-    }
+//    @RequestMapping("/goproductList2")
+//    public String goproductList2(HttpServletRequest request,
+//                                @RequestParam("category") String productType){
+//        System.out.println("goproductList2的类型:"+productType);
+//        List<Product> products = productService.selectProductByType(productType);
+//        if (products!=null){
+//            request.setAttribute("products",products);
+//        }else{
+//            List<Product> products1 = productService.selectProduct(null, null, productType, null, null);
+//            request.setAttribute("products",products1);
+////            request.setAttribute("category",productType);
+//        }
+//        return "product_list2";
+//    }
     /**
      * 分页查询
      * @param category 类型

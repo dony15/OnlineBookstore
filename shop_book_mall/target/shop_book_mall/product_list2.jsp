@@ -19,9 +19,9 @@
 
 		//limit
 		function productlimit(pageno) {
-            // var thisURL=document.URL;
-            // var values=thisURL.split('?')[1];
-            // var category=values.split("&")[0].split("=")[1];
+            var thisURL=document.URL;
+            var values=thisURL.split('?')[1];
+            var category=values.split("&")[0].split("=")[1];
 
             var xhr = getXMLHttpRequest();
 		    xhr.onreadystatechange=function () {
@@ -81,7 +81,7 @@
                 }
             }
             var url="";
-		    url=url+"showProductPage2?pageNo="+pageno+"&pageSize=8&category="+<%if ((request.getAttribute("products"))!=null){out.print("\""+((List<Product>)request.getAttribute("products")).get(0).getProductType()+"\"");}%>;
+		    url=url+"showProductPage2?pageNo="+pageno+"&pageSize=8&category="+category;
             xhr.open("get",url);
 		    xhr.send();
 
@@ -108,7 +108,7 @@
 						List<Product> products = (List<Product>) request.getAttribute("products");
 					%>
 					<div style="text-align:right; margin:5px 10px 5px 0px">
-						<a href="index.jsp">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><% if ((request.getAttribute("products"))!=null){ out.print(products.get(0).getProductType());}%></a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;图书列表
+						<a href="index.jsp">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><% if ((request.getAttribute("products"))!=null){ out.print(products.get(0).getProductType());}else{out.print("暂无");}%></a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;图书列表
 					</div>
 
 					<table cellspacing="0" class="listcontent">
@@ -116,7 +116,7 @@
 							<td>
 								<h1>商品目录</h1>
 								<hr />
-								<h1><%if ((request.getAttribute("products"))!=null){out.print(products.get(0).getProductType());}%></h1>&nbsp;&nbsp;&nbsp;&nbsp;共<%if ((request.getAttribute("products"))!=null){ out.print(products.size());}%>件商品
+								<h1><%if ((request.getAttribute("products"))!=null){out.print(products.get(0).getProductType());}else{out.print("暂无");}%></h1>&nbsp;&nbsp;&nbsp;&nbsp;共<%if ((request.getAttribute("products"))!=null){ out.print(products.size());}else{out.print("0");}%>件商品
 
 								<hr />
 								<div style="margin-top:20px; margin-bottom:5px">

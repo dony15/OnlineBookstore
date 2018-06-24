@@ -61,33 +61,33 @@
 
 <div id="divmenu">
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=文学">文学</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=文学">文学</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=生活">生活</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=生活">生活</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=计算机">计算机</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=计算机">计算机</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=外语">外语</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=外语">外语</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=经营">经管</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=经营">经管</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=励志">励志</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=励志">励志</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=社科">社科</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=社科">社科</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=学术">学术</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=学术">学术</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=少儿">少儿</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=少儿">少儿</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=艺术">艺术</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=艺术">艺术</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=原版">原版</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=原版">原版</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=科技">科技</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=科技">科技</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=考试">考试</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=考试">考试</a>
 	<a
-		href="${pageContext.request.contextPath}/goproductList2?category=生活百科">生活百科</a>
+		href="${pageContext.request.contextPath}/product_list2.jsp?category=生活百科">生活百科</a>
 	<a href="${pageContext.request.contextPath}/goproductList1" style="color:#FFFF00">全部商品目录</a>
 </div>
 <div id="divsearch">
